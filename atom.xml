@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-28T13:59:10.000Z</updated>
+  <updated>2019-07-28T14:09:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,19 +20,17 @@
     <title>2019-h2书单</title>
     <link href="http://yoursite.com/2019/07/28/2019-h2%E4%B9%A6%E5%8D%95/"/>
     <id>http://yoursite.com/2019/07/28/2019-h2书单/</id>
-    <published>2019-07-28T13:59:10.000Z</published>
-    <updated>2019-07-28T13:59:10.000Z</updated>
+    <published>2019-07-27T16:00:00.000Z</published>
+    <updated>2019-07-28T14:09:45.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="研发类"><a href="#研发类" class="headerlink" title="研发类"></a>研发类</h2><ul><li>[] Elasticsearch服务器开发</li><li>[] Hadoop权威指南</li><li>[] 深入理解Nginx</li></ul><h2 id="自我提升"><a href="#自我提升" class="headerlink" title="自我提升"></a>自我提升</h2><ul><li style="list-style: none"><input type="checkbox" checked> 人性的弱点</li><li>[] 社会心理学</li><li>[] 富爸爸穷爸爸</li><li>[] 自卑与超越</li></ul><h2 id="小说"><a href="#小说" class="headerlink" title="小说"></a>小说</h2><ul><li style="list-style: none"><input type="checkbox" checked> 许三观买血记</li><li>[] 挪威的森林</li><li>[] 月亮和六便士</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="研发类"><a href="#研发类" class="headerlink" title="研发类"></a>研发类</h2><ul><li style="list-style: none"><input type="checkbox" checked> Elasticsearch服务器开发</li><li style="list-style: none"><input type="checkbox"> Hadoop权威指南</li><li style="list-style: none"><input type="checkbox"> 深入理解Nginx</li></ul><h2 id="自我提升"><a href="#自我提升" class="headerlink" title="自我提升"></a>自我提升</h2><ul><li style="list-style: none"><input type="checkbox" checked> 人性的弱点</li><li style="list-style: none"><input type="checkbox"> 社会心理学</li><li style="list-style: none"><input type="checkbox"> 富爸爸穷爸爸</li><li style="list-style: none"><input type="checkbox"> 自卑与超越</li></ul><h2 id="小说"><a href="#小说" class="headerlink" title="小说"></a>小说</h2><ul><li style="list-style: none"><input type="checkbox" checked> 许三观买血记</li><li style="list-style: none"><input type="checkbox"> 挪威的森林</li><li style="list-style: none"><input type="checkbox"> 月亮和六便士</li></ul>]]></content>
     
     <summary type="html">
     
       
       
         &lt;h2 id=&quot;研发类&quot;&gt;&lt;a href=&quot;#研发类&quot; class=&quot;headerlink&quot; title=&quot;研发类&quot;&gt;&lt;/a&gt;研发类&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;[] Elasticsearch服务器开发&lt;/li&gt;
-&lt;li&gt;[] Hadoop权威指南&lt;/li&gt;
-&lt;li&gt;[] 深入理
+&lt;li style=&quot;list-style: none&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Ela
       
     
     </summary>
