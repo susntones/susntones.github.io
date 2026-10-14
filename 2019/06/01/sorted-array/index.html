@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"susntones.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Sorted ArrayMerge sorted array&emsp;&emsp;主要思路：倒序从数组的尾部开始合并。 leedcode地址 12345678910111213141516var merge &#x3D; function(nums1, m, nums2, n) &#123;  var latstIndex &#x3D; m + n - 1;  var nums1LastIndex &#x3D; m - 1;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sorted-array">
+<meta property="og:url" content="https://susntones.github.io/2019/06/01/sorted-array/index.html">
+<meta property="og:site_name" content="进击的白石">
+<meta property="og:description" content="Sorted ArrayMerge sorted array&emsp;&emsp;主要思路：倒序从数组的尾部开始合并。 leedcode地址 12345678910111213141516var merge &#x3D; function(nums1, m, nums2, n) &#123;  var latstIndex &#x3D; m + n - 1;  var nums1LastIndex &#x3D; m - 1;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-01T02:06:42.000Z">
+<meta property="article:modified_time" content="2026-10-13T08:57:25.094Z">
+<meta property="article:author" content="刘白石">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://susntones.github.io/2019/06/01/sorted-array/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://susntones.github.io/2019/06/01/sorted-array/","path":"2019/06/01/sorted-array/","title":"sorted-array"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>sorted-array | 进击的白石</title>
+  
+
+
+
+
+
+
+
+
+  
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="进击的白石" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">进击的白石</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录下自己的成长，毕竟做程序员这么久了。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-ai学习"><a href="/categories/ai/" rel="section"><i class="fa fa-robot fa-fw"></i>AI学习</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sorted-Array"><span class="nav-number">1.</span> <span class="nav-text">Sorted Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Merge-sorted-array"><span class="nav-number">1.1.</span> <span class="nav-text">Merge sorted array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recover-rotated-dorted-array"><span class="nav-number">1.2.</span> <span class="nav-text">Recover rotated dorted array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Median-of-two-sorted-arrays"><span class="nav-number">1.3.</span> <span class="nav-text">Median of two sorted arrays</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘白石"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">刘白石</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/susntones" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;susntones" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sunstone611@163.com" title="E-Mail → mailto:sunstone611@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://susntones.github.io/2019/06/01/sorted-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="刘白石">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进击的白石">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="sorted-array | 进击的白石">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sorted-array
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-01 10:06:42" itemprop="dateCreated datePublished" datetime="2019-06-01T10:06:42+08:00">2019-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B9%9D%E7%AB%A0%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">九章算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Sorted-Array"><a href="#Sorted-Array" class="headerlink" title="Sorted Array"></a>Sorted Array</h2><h3 id="Merge-sorted-array"><a href="#Merge-sorted-array" class="headerlink" title="Merge sorted array"></a>Merge sorted array</h3><p>&emsp;&emsp;主要思路：倒序从数组的尾部开始合并。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-sorted-array/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var merge = function(nums1, m, nums2, n) &#123;</span><br><span class="line">  var latstIndex = m + n - 1;</span><br><span class="line">  var nums1LastIndex = m - 1;</span><br><span class="line">  var nums2LastIndex = n -1;</span><br><span class="line">  while(latstIndex &gt;= 0 &amp;&amp; nums2LastIndex &gt;=0) &#123;</span><br><span class="line">    if (nums1LastIndex === -1 || nums2[nums2LastIndex] &gt;= nums1[nums1LastIndex]) &#123;</span><br><span class="line">      nums1[latstIndex] = nums2[nums2LastIndex];</span><br><span class="line">      nums2LastIndex--;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      nums1[latstIndex] = nums1[nums1LastIndex];</span><br><span class="line">      nums1LastIndex--;</span><br><span class="line">    &#125;</span><br><span class="line">    latstIndex--;</span><br><span class="line">  &#125;</span><br><span class="line">  return nums1;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Recover-rotated-dorted-array"><a href="#Recover-rotated-dorted-array" class="headerlink" title="Recover rotated dorted array"></a>Recover rotated dorted array</h3><p>&emsp;&emsp;Given a rotated sorted array, recover it to sorted array in-place</p>
+<p>Example</p>
+<p>[4, 5, 1, 2, 3] -&gt; [1, 2, 3, 4, 5]</p>
+<p>使用O(1)的额外空间</p>
+<p>三步翻转法。</p>
+<p>[4, 5, 1, 2, 3] -&gt; [3, 2, 1, 5, 4] -&gt; [1, 2, 3, 5, 4] -&gt; [1, 2, 3, 4, 5]</p>
+<h3 id="Median-of-two-sorted-arrays"><a href="#Median-of-two-sorted-arrays" class="headerlink" title="Median of two sorted arrays"></a>Median of two sorted arrays</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/">leedcode地址</a></p>
+<p>解法一：</p>
+<p>&emsp;&emsp;这个方法是我做这道题时候最先想到的方法。时间复杂度是O(min(m, n))并不能达到O(log(n + m))。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">var findMedianSortedArrays = function(nums1, nums2) &#123;</span><br><span class="line">    var length = nums1.length + nums2.length;</span><br><span class="line">    var half = Math.floor(length / 2);</span><br><span class="line">    var isJi = length % 2;</span><br><span class="line">    if (nums1.length &gt; nums2.length) &#123;</span><br><span class="line">        var temp = nums1;</span><br><span class="line">        nums1 = nums2;</span><br><span class="line">        nums2 = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    if (nums1.length === 0) &#123;</span><br><span class="line">        if (isJi) &#123;</span><br><span class="line">            return nums2[half];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return (nums2[half - 1] + nums2[half]) / 2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (var i = -1; i &lt; nums1.length; i ++) &#123;</span><br><span class="line">        if (i === -1) &#123;</span><br><span class="line">            if (nums1[0] &gt;= nums2[half - 1]) &#123;</span><br><span class="line">                if (isJi) &#123;</span><br><span class="line">                    return nums2[half] &amp;&amp; (nums2[half] &lt; nums1[0]) ? nums2[half] : nums1[0];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return (nums2[half - 1] + (nums2[half] &amp;&amp; (nums2[half] &lt; nums1[0]) ? nums2[half] : nums1[0])) / 2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else if (i == nums1.length - 1) &#123;</span><br><span class="line">            if (nums1[nums1.length - 1] &lt;= nums2[half - i - 1]) &#123;</span><br><span class="line">                if (isJi) &#123;</span><br><span class="line">                    return nums2[half - i - 1];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return (nums2[half - i -1] + (nums2[half - i - 2] &amp;&amp; (nums2[half - i - 2] &gt; nums1[i]) ? nums2[half - i - 2] : nums1[i])) / 2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            var a1 = nums1[i];</span><br><span class="line">            var a2 = nums1[i + 1];</span><br><span class="line">            var b1 = nums2[half - i - 2];</span><br><span class="line">            var b2 = nums2[half - i - 1];</span><br><span class="line">            if (a1 &lt;= b2 &amp;&amp; b1 &lt;= a2) &#123;</span><br><span class="line">                if (isJi) &#123;</span><br><span class="line">                    return a2 &amp;&amp; a2 &lt; b2 ? a2 : b2;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return ((a1 &gt; b1 ? a1 : b1) + (a2 &amp;&amp; a2 &lt; b2 ? a2 : b2)) / 2;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>解法二：</p>
+<p>&emsp;&emsp;最终转换成了一个查到第k大的问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var findMedianSortedArrays = function(nums1, nums2) &#123;</span><br><span class="line">    var len = nums1.length + nums2.length;</span><br><span class="line">    var halfLen = Math.floor(len / 2);</span><br><span class="line">    if (len % 2 === 0) &#123;</span><br><span class="line">        return (findKth(nums1, 0, nums2, 0, halfLen) + findKth(nums1, 0, nums2, 0, halfLen + 1)) / 2;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return findKth(nums1, 0, nums2, 0, halfLen + 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function findKth(nums1, start1, nums2, start2, k) &#123;</span><br><span class="line">    if(start1 &gt;= nums1.length) &#123;</span><br><span class="line">        return nums2[start2 + k -1];</span><br><span class="line">    &#125;</span><br><span class="line">    if (start2 &gt;= nums2.length) &#123;</span><br><span class="line">        return nums1[start1 + k - 1];</span><br><span class="line">    &#125;</span><br><span class="line">    if (k === 1) &#123;</span><br><span class="line">        return Math.min(nums1[start1], nums2[start2]);</span><br><span class="line">    &#125;</span><br><span class="line">    var halfK = Math.floor(k / 2);</span><br><span class="line">    // 如果加halfK超过数据长度，表示half一定存在于另一个数组中，直接取Infinity表示最大值。</span><br><span class="line">    var key1 = start1 + halfK - 1 &lt; nums1.length ? nums1[start1 + halfK - 1] : Infinity;</span><br><span class="line">    var key2 = start2 + halfK - 1 &lt; nums2.length ? nums2[start2 + halfK - 1] : Infinity;</span><br><span class="line">    if (key1 &lt; key2) &#123;</span><br><span class="line">        return findKth(nums1, start1 + halfK, nums2, start2, k - halfK);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return findKth(nums1, start1, nums2, start2 + halfK, k - halfK);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/05/30/binary-search/" rel="prev" title="binary-search">
+                  <i class="fa fa-angle-left"></i> binary-search
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/17/binary-tree/" rel="next" title="binary-tree">
+                  binary-tree <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">刘白石</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

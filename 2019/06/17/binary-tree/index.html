@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"susntones.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Binary Tree&emsp;&emsp;解决二叉树常用的两种方法。  遍历法(traverse),缺点是无法多线程。 分治法(divide conquer)。merge store 和 quick stort 都使用了分治法。  Maximum depth of binary tree&emsp;&emsp;最基本的分治模板，分别计算左右子树，然后合并结果。 leedcode地址 12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="binary-tree">
+<meta property="og:url" content="https://susntones.github.io/2019/06/17/binary-tree/index.html">
+<meta property="og:site_name" content="进击的白石">
+<meta property="og:description" content="Binary Tree&emsp;&emsp;解决二叉树常用的两种方法。  遍历法(traverse),缺点是无法多线程。 分治法(divide conquer)。merge store 和 quick stort 都使用了分治法。  Maximum depth of binary tree&emsp;&emsp;最基本的分治模板，分别计算左右子树，然后合并结果。 leedcode地址 12345">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-17T11:18:53.000Z">
+<meta property="article:modified_time" content="2026-10-13T08:57:25.095Z">
+<meta property="article:author" content="刘白石">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://susntones.github.io/2019/06/17/binary-tree/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://susntones.github.io/2019/06/17/binary-tree/","path":"2019/06/17/binary-tree/","title":"binary-tree"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>binary-tree | 进击的白石</title>
+  
+
+
+
+
+
+
+
+
+  
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="进击的白石" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">进击的白石</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录下自己的成长，毕竟做程序员这么久了。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-ai学习"><a href="/categories/ai/" rel="section"><i class="fa fa-robot fa-fw"></i>AI学习</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-Tree"><span class="nav-number">1.</span> <span class="nav-text">Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximum-depth-of-binary-tree"><span class="nav-number">1.1.</span> <span class="nav-text">Maximum depth of binary tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Balanced-binary-tree"><span class="nav-number">1.2.</span> <span class="nav-text">Balanced binary tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-tree-maximum-path-sum"><span class="nav-number">1.3.</span> <span class="nav-text">Binary tree maximum path sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lowest-common-ancestor-of-a-binary-tree"><span class="nav-number">1.4.</span> <span class="nav-text">Lowest common ancestor of a binary tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-tree-level-order-traversal"><span class="nav-number">1.5.</span> <span class="nav-text">Binary tree level order traversal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Validate-binary-search-tree"><span class="nav-number">1.6.</span> <span class="nav-text">Validate binary search tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-search-tree-iterator"><span class="nav-number">1.7.</span> <span class="nav-text">Binary search tree iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete-nod-in-a-bst"><span class="nav-number">1.8.</span> <span class="nav-text">Delete nod in a bst</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="刘白石"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">刘白石</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/susntones" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;susntones" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sunstone611@163.com" title="E-Mail → mailto:sunstone611@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://susntones.github.io/2019/06/17/binary-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="刘白石">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进击的白石">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="binary-tree | 进击的白石">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          binary-tree
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-17 19:18:53" itemprop="dateCreated datePublished" datetime="2019-06-17T19:18:53+08:00">2019-06-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B9%9D%E7%AB%A0%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">九章算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Binary-Tree"><a href="#Binary-Tree" class="headerlink" title="Binary Tree"></a>Binary Tree</h2><p>&emsp;&emsp;解决二叉树常用的两种方法。</p>
+<ul>
+<li>遍历法(traverse),缺点是无法多线程。</li>
+<li>分治法(divide conquer)。merge store 和 quick stort 都使用了分治法。</li>
+</ul>
+<h3 id="Maximum-depth-of-binary-tree"><a href="#Maximum-depth-of-binary-tree" class="headerlink" title="Maximum depth of binary tree"></a>Maximum depth of binary tree</h3><p>&emsp;&emsp;最基本的分治模板，分别计算左右子树，然后合并结果。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var maxDepth = function(root) &#123;</span><br><span class="line">    if (root === null) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    var leftMaxDepth = maxDepth(root.left);</span><br><span class="line">    var rightMaxDepth = maxDepth(root.right);</span><br><span class="line">    return Math.max(leftMaxDepth, rightMaxDepth) + 1;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Balanced-binary-tree"><a href="#Balanced-binary-tree" class="headerlink" title="Balanced binary tree"></a>Balanced binary tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var isBalanced = function(root) &#123;</span><br><span class="line">    var depth = balanceDepth(root);</span><br><span class="line">    return depth === -1 ? false : true;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function balanceDepth(root) &#123;</span><br><span class="line">    if (root === null) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    var leftBalanceDepth = balanceDepth(root.left);</span><br><span class="line">    var rightBalbanceDepth = balanceDepth(root.right);</span><br><span class="line">    if (leftBalanceDepth === -1 || rightBalbanceDepth === -1 || Math.abs(leftBalanceDepth - rightBalbanceDepth) &gt; 1) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return Math.max(leftBalanceDepth, rightBalbanceDepth) + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Binary-tree-maximum-path-sum"><a href="#Binary-tree-maximum-path-sum" class="headerlink" title="Binary tree maximum path sum"></a>Binary tree maximum path sum</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var maxPathSum = function(root) &#123;</span><br><span class="line">    var &#123; singleSum, maxSum &#125; = getMathPath(root);</span><br><span class="line">    return maxSum;</span><br><span class="line">&#125;;</span><br><span class="line">  </span><br><span class="line">function getMathPath(root) &#123;</span><br><span class="line">    if (root === null) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            maxSum: -Infinity,</span><br><span class="line">            singleSum: 0,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    var leftMathPathObj = getMathPath(root.left);</span><br><span class="line">    var rightMathPathObj = getMathPath(root.right);</span><br><span class="line"></span><br><span class="line">    var value = root.val;</span><br><span class="line">    var singleSum = Math.max(leftMathPathObj.singleSum + value, rightMathPathObj.singleSum + value, 0);</span><br><span class="line">    var maxSum = Math.max(leftMathPathObj.maxSum, rightMathPathObj.maxSum, leftMathPathObj.singleSum + value + rightMathPathObj.singleSum);  </span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">      maxSum,</span><br><span class="line">      singleSum,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Lowest-common-ancestor-of-a-binary-tree"><a href="#Lowest-common-ancestor-of-a-binary-tree" class="headerlink" title="Lowest common ancestor of a binary tree"></a>Lowest common ancestor of a binary tree</h3><p>&emsp;&emsp;当root的左右节点查询p, q结果都不为空的时候，说明p和q一个在左节点，一个在右节点，root就是最近公共父节点。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var lowestCommonAncestor = function(root, p, q) &#123;</span><br><span class="line">    if (!root || root === p || root === q) &#123;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    var left = lowestCommonAncestor(root.left, p, q);</span><br><span class="line">    var right = lowestCommonAncestor(root.right, p, q);</span><br><span class="line">    if (left &amp;&amp; right) &#123;</span><br><span class="line">        return root;</span><br><span class="line">    &#125; else if (!left) &#123;</span><br><span class="line">        return right;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Binary-tree-level-order-traversal"><a href="#Binary-tree-level-order-traversal" class="headerlink" title="Binary tree level order traversal"></a>Binary tree level order traversal</h3><p>&emsp;&emsp;数的宽度优先搜索是无法使用递归的，需要使用队列。js中，通过Array.shift实现出队。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var levelOrder = function(root) &#123;</span><br><span class="line">    var result = [];</span><br><span class="line">    var queue = [];</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    queue.push(root);</span><br><span class="line">    while (queue.length &gt; 0) &#123;</span><br><span class="line">        var levelLength = queue.length;</span><br><span class="line">        var levelArray = [];</span><br><span class="line">        for (var i = 0; i &lt; levelLength; i++) &#123;</span><br><span class="line">            var node = queue.shift();</span><br><span class="line">            levelArray.push(node.val);</span><br><span class="line">            if (node.left) &#123;</span><br><span class="line">                queue.push(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">            if (node.right) &#123;</span><br><span class="line">                queue.push(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result.push(levelArray);</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Validate-binary-search-tree"><a href="#Validate-binary-search-tree" class="headerlink" title="Validate binary search tree"></a>Validate binary search tree</h3><p>&emsp;&emsp;bst的中序遍历是升序的。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/validate-binary-search-tree/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var isValidBST = function(root) &#123;</span><br><span class="line">    var result = validBST(root);</span><br><span class="line">    return result.isBST;</span><br><span class="line">&#125;;</span><br><span class="line">  </span><br><span class="line">function validBST(root) &#123;</span><br><span class="line">    if (root === null) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            isBST: true,</span><br><span class="line">            min: Infinity,</span><br><span class="line">            max: -Infinity,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    var leftValid = validBST(root.left);</span><br><span class="line">    var rightValid = validBST(root.right);</span><br><span class="line">    var val = root.val;</span><br><span class="line">    if (leftValid.isBST &amp;&amp; rightValid.isBST &amp;&amp; val &gt; leftValid.max &amp;&amp; val &lt; rightValid.min) &#123;</span><br><span class="line">        var min = root.left ? leftValid.min : val;</span><br><span class="line">        var max = root.right ? rightValid.max : val;</span><br><span class="line">        return &#123;</span><br><span class="line">            isBST: true,</span><br><span class="line">            min,</span><br><span class="line">            max,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            isBST: false,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Binary-search-tree-iterator"><a href="#Binary-search-tree-iterator" class="headerlink" title="Binary search tree iterator"></a>Binary search tree iterator</h3><p>&emsp;&emsp;非递归实现递归可以考虑stack。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search-tree-iterator/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var BSTIterator = function(root) &#123;</span><br><span class="line">    this.stack = [];</span><br><span class="line">    this.current = root;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @return the next smallest number</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">BSTIterator.prototype.next = function() &#123;</span><br><span class="line">    while(this.current !== null) &#123;</span><br><span class="line">        this.stack.push(this.current);</span><br><span class="line">        this.current = this.current.left</span><br><span class="line">    &#125;</span><br><span class="line">    this.current = this.stack.pop();</span><br><span class="line">    node = this.current;</span><br><span class="line">    this.current = this.current.right;</span><br><span class="line">    return node.val;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @return whether we have a next smallest number</span><br><span class="line"> * @return &#123;boolean&#125;</span><br><span class="line"> */</span><br><span class="line">BSTIterator.prototype.hasNext = function() &#123;</span><br><span class="line">    if (this.current !== null || this.stack.length &gt; 0) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Delete-nod-in-a-bst"><a href="#Delete-nod-in-a-bst" class="headerlink" title="Delete nod in a bst"></a>Delete nod in a bst</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-node-in-a-bst/">leedcode地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">var deleteNode = function(root, key) &#123;</span><br><span class="line">    if (root === null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    if (key &lt; root.val) &#123;</span><br><span class="line">        root.left = deleteNode(root.left, key);</span><br><span class="line">    &#125; else if (key &gt; root.val) &#123;</span><br><span class="line">        root.right = deleteNode(root.right, key);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (root.left === null &amp;&amp; root.right === null) &#123;</span><br><span class="line">            return null</span><br><span class="line">        &#125; else if (root.left === null &amp;&amp; root.right !== null) &#123;</span><br><span class="line">            return root.right;</span><br><span class="line">        &#125; else if (root.right === null &amp;&amp; root.left !== null) &#123;</span><br><span class="line">            return root.left;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            var pre = root.right;</span><br><span class="line">            var current = pre.left;</span><br><span class="line">            if (current === null) &#123;</span><br><span class="line">                pre.left = root.left</span><br><span class="line">                return pre;</span><br><span class="line">            &#125;</span><br><span class="line">            while (current.left !== null) &#123;</span><br><span class="line">                pre = current;</span><br><span class="line">                current = current.left;</span><br><span class="line">            &#125;</span><br><span class="line">            pre.left = current.right;</span><br><span class="line">            current.left = root.left;</span><br><span class="line">            current.right = root.right;</span><br><span class="line">            return current;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return root;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/06/01/sorted-array/" rel="prev" title="sorted-array">
+                  <i class="fa fa-angle-left"></i> sorted-array
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/24/linked-list/" rel="next" title="linked-list">
+                  linked-list <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">刘白石</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
